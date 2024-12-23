@@ -9,7 +9,6 @@ for (let i = 0; i < 1; i++) {
     } else {
         alert("Невірні дані! Будь ласка, спробуйте ще раз");
         i--;
-        continue;
     }
 }
 
@@ -21,37 +20,29 @@ const personalMovieDB = {
     privat: false
 };
 
-// const latestWatched1 = prompt("Який фільм ви дивились нещодавно?", ""),
-//         points1 = +prompt("Яка ваша оцінка?", ""),
-//         latestWatched2 = prompt("Який фільм ви дивились нещодавно?", ""),
-//         points2 = +prompt("Яка ваша оцінка?", "");
-
-// personalMovieDB.movies[latestWatched1] = points1;
-// personalMovieDB.movies[latestWatched2] = points2;
-
 let latestWatched;
 let points;
 const lengthLine = 25;
 
 for (let i = 0; i < 2; i++) {
     // loop that check the name of the movie
-    nameMovieLoop: while (true) {
+    while (true) {
         latestWatched = prompt("Який фільм ви дивились нещодавно?", "");
         if (latestWatched && latestWatched.length <= lengthLine && latestWatched.trim() !== "") {
             break;
         } else {
             alert("Невірні дані! Спробуйте ще раз");
-            continue nameMovieLoop;
+            continue;
         }
     }
     //loop that check points of the movie
-    pointsMovieLoop: while (true) {
+    while (true) {
         points = +prompt("Яка ваша оцінка?", "");
         if (points && !isNaN(points) && points > 0 && points <= 10) {
             break;
         } else {
             alert("Невірні дані! Спробуйте ще раз");
-            continue pointsMovieLoop;
+            continue;
         }
     }
     personalMovieDB.movies[latestWatched] = points;
