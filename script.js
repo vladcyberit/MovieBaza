@@ -2,15 +2,19 @@
 
 let numberOfFilms;
 
-for (let i = 0; i < 1; i++) {
-    numberOfFilms = +prompt("Скільки фільмів ви вже переглянули?", "");
-    if (numberOfFilms && !isNaN(numberOfFilms) && numberOfFilms > 0) {
-        break;
-    } else {
-        alert("Невірні дані! Будь ласка, спробуйте ще раз");
-        i--;
+function start() {
+    for (let i = 0; i < 1; i++) {
+        numberOfFilms = +prompt("Скільки фільмів ви вже переглянули?", "");
+        if (numberOfFilms && !isNaN(numberOfFilms) && numberOfFilms > 0) {
+            break;
+        } else {
+            alert("Невірні дані! Будь ласка, спробуйте ще раз");
+            i--;
+        }
     }
 }
+
+start();
 
 const personalMovieDB = {
     count: numberOfFilms,
