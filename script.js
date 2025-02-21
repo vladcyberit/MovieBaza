@@ -22,9 +22,10 @@ const personalMovieDB = {
 
 let latestWatched;
 let points;
+const filmsCounter = 2;
 const lengthLine = 25;
 
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < filmsCounter; i++) {
     // loop that check the name of the movie
     while (true) {
         latestWatched = prompt("Який фільм ви дивились нещодавно?", "");
@@ -32,7 +33,6 @@ for (let i = 0; i < 2; i++) {
             break;
         } else {
             alert("Невірні дані! Спробуйте ще раз");
-            continue;
         }
     }
     //loop that check points of the movie
@@ -42,7 +42,6 @@ for (let i = 0; i < 2; i++) {
             break;
         } else {
             alert("Невірні дані! Спробуйте ще раз");
-            continue;
         }
     }
     personalMovieDB.movies[latestWatched] = points;
