@@ -55,9 +55,13 @@ function askMyFilms() {
 
 askMyFilms();
 
-(personalMovieDB.count < 10) ? alert("Переглянуто дуже мало фільмів. Отримайте 30 днів безкоштовного необмеженого доступу до фільмів!") :
-(personalMovieDB.count >= 10 && personalMovieDB.count < 30) ? alert("Так тримати! Ви хороший глядач") :
-(personalMovieDB.count >= 30 ) ? alert("Неймовірно! Ви справжній любитель кіно") :
-alert("Виникла помилка");
+function detectPersonalLevel() {
+    (personalMovieDB.count < 10) ? alert("Переглянуто дуже мало фільмів. Отримайте 30 днів безкоштовного необмеженого доступу до фільмів!") :
+    (personalMovieDB.count >= 10 && personalMovieDB.count < 30) ? alert("Так тримати! Ви хороший глядач") :
+    (personalMovieDB.count >= 30 ) ? alert("Неймовірно! Ви справжній любитель кіно") :
+    alert("Виникла помилка");
+}
+
+detectPersonalLevel();
 
 console.log(personalMovieDB);
