@@ -64,4 +64,26 @@ function detectPersonalLevel() {
 
 detectPersonalLevel();
 
-console.log(personalMovieDB);
+function showMyDB(hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB);
+    }
+}
+
+showMyDB(personalMovieDB.privat);
+
+let myGenres;
+
+function writeYourGenres() {
+    for (let i = 1; i <= 3; i++) {
+        myGenres = prompt(`Ваш улюблений жанр номер ${i}:`, "");
+        if (myGenres && myGenres.length <= lengthLine && myGenres.trim() !== "") {
+            personalMovieDB.genres[i - 1] = myGenres;
+        } else {
+            alert("Невірні дані! Спробуйте ще раз");
+            i--;
+        }
+    }
+}
+
+writeYourGenres();
