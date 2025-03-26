@@ -1,22 +1,21 @@
 'use strict';
 
-let numberOfFilms;
-let latestWatched;
-let points;
+let latestWatched = "";
+let points = 0;
 const filmsCounter = 2;
 const lengthLine = 25;
-let myGenres;
+let myGenres = "";
 
 const personalMovieDB = {
-    count: numberOfFilms,
+    count: 0,
     movies: {},
     actors: {},
     genres: [],
     privat: false,
     start: function() {
         for (let i = 0; i < 1; i++) {
-            numberOfFilms = +prompt("Скільки фільмів ви вже переглянули?", "");
-            if (numberOfFilms && !isNaN(numberOfFilms) && numberOfFilms > 0) {
+            personalMovieDB.count = +prompt("Скільки фільмів ви вже переглянули?", "");
+            if (personalMovieDB.count && !isNaN(personalMovieDB.count) && personalMovieDB.count > 0) {
                 break;
             } else {
                 alert("Невірні дані! Будь ласка, спробуйте ще раз");
@@ -48,10 +47,22 @@ const personalMovieDB = {
         }
     },
     detectPersonalLevel: function() {
-        (personalMovieDB.count < 10) ? alert("Переглянуто дуже мало фільмів. Отримайте 30 днів безкоштовного необмеженого доступу до фільмів!") :
-        (personalMovieDB.count >= 10 && personalMovieDB.count < 30) ? alert("Так тримати! Ви хороший глядач") :
-        (personalMovieDB.count >= 30 ) ? alert("Неймовірно! Ви справжній любитель кіно") :
-        alert("Виникла помилка");
+        if (personalMovieDB.count < 10) {
+            alert("Переглянуто дуже мало фільмів. Отримайте 30 днів безкоштовного необмеженого доступу до фільмів!");
+        } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+            alert("Так тримати! Ви хороший глядач");
+        } else if (personalMovieDB.count >= 30 ) {
+            alert("Неймовірно! Ви справжній любитель кіно");
+        } else {
+            alert("Виникла помилка");
+        }
+    },
+    toggleVisibleMyDB: function() {
+        if (personalMovieDB.privat === false) {
+            personalMovieDB.privat = true;
+        } else {
+            personalMovieDB.privat = false;
+        }
     },
     showMyDB: function(hidden) {
         if (!hidden) {
@@ -60,14 +71,17 @@ const personalMovieDB = {
     },
     writeYourGenres: function() {
         for (let i = 1; i <= 3; i++) {
-            myGenres = prompt(`Ваш улюблений жанр номер ${i}:`, "");
-            if (myGenres && myGenres.length <= lengthLine && myGenres.trim() !== "") {
+            myGenres = prompt(`Ваш улюблений жанр №${i}:`, "");
+            if (myGenres && myGenres.length <= lengthLine && myGenres.trim() !== "" && isNaN(parseInt(myGenres))) {
                 personalMovieDB.genres[i - 1] = myGenres;
             } else {
                 alert("Невірні дані! Спробуйте ще раз");
                 i--;
             }
         }
+        personalMovieDB.genres.forEach(function (elem, index) {
+            console.log(`Любимый жанр №${index + 1} - это ${elem}`);
+        });
     },
 };
 
@@ -76,6 +90,8 @@ personalMovieDB.start();
 personalMovieDB.askMyFilms();
 
 personalMovieDB.detectPersonalLevel();
+
+personalMovieDB.toggleVisibleMyDB();
 
 personalMovieDB.showMyDB(personalMovieDB.privat);
 
