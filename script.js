@@ -47,40 +47,45 @@ const personalMovieDB = {
         }
     },
     detectPersonalLevel: function() {
-        if (personalMovieDB.count < 10) {
-            alert("Переглянуто дуже мало фільмів. Отримайте 30 днів безкоштовного необмеженого доступу до фільмів!");
-        } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-            alert("Так тримати! Ви хороший глядач");
-        } else if (personalMovieDB.count >= 30 ) {
-            alert("Неймовірно! Ви справжній любитель кіно");
-        } else {
-            alert("Виникла помилка");
-        }
-    },
-    toggleVisibleMyDB: function() {
-        if (personalMovieDB.privat === false) {
-            personalMovieDB.privat = true;
-        } else {
-            personalMovieDB.privat = false;
-        }
+        (personalMovieDB.count < 10) ? alert("Переглянуто дуже мало фільмів. Отримайте 30 днів безкоштовного необмеженого доступу до фільмів!") :
+        (personalMovieDB.count >= 10 && personalMovieDB.count < 30) ? alert("Так тримати! Ви хороший глядач") :
+        (personalMovieDB.count >= 30 ) ? alert("Неймовірно! Ви справжній любитель кіно") :
+        alert("Виникла помилка");
     },
     showMyDB: function(hidden) {
         if (!hidden) {
             console.log(personalMovieDB);
         }
     },
+    toggleVisibleMyDB: function() {
+        if (!personalMovieDB.privat) {
+            personalMovieDB.privat = true;
+        } else {
+            personalMovieDB.privat = false;
+        }
+    },
     writeYourGenres: function() {
         for (let i = 1; i <= 3; i++) {
             myGenres = prompt(`Ваш улюблений жанр №${i}:`, "");
-            if (myGenres && myGenres.length <= lengthLine && myGenres.trim() !== "" && isNaN(parseInt(myGenres))) {
+            if (myGenres && myGenres.length <= lengthLine && myGenres.trim() !== "" && isNaN(parseInt(myGenres.replace(/\D/g, "")))) {
                 personalMovieDB.genres[i - 1] = myGenres;
             } else {
                 alert("Невірні дані! Спробуйте ще раз");
                 i--;
             }
         }
-        personalMovieDB.genres.forEach(function (elem, index) {
-            console.log(`Любимый жанр №${index + 1} - это ${elem}`);
+        //writeYourGenres feature modified with arrays
+        // for (let i = 1; i < 2; i++) {
+        //     myGenres = prompt(`Вкажіть ваші улюблені жанри через кому`, "");
+        //     if (myGenres && myGenres.trim() !== "" && isNaN(parseInt(myGenres.replace(/\D/g, "")))) {
+        //         personalMovieDB.genres = myGenres.split(", ");
+        //     } else {
+        //         alert("Невірні дані! Спробуйте ще раз");
+        //         i--;
+        //     }
+        // }
+        personalMovieDB.genres.forEach((elem, index) => {
+            console.log(`Улюблений жанр №${index + 1} - это ${elem}`);
         });
     },
 };
@@ -91,8 +96,8 @@ personalMovieDB.askMyFilms();
 
 personalMovieDB.detectPersonalLevel();
 
-personalMovieDB.toggleVisibleMyDB();
-
 personalMovieDB.showMyDB(personalMovieDB.privat);
+
+personalMovieDB.toggleVisibleMyDB();
 
 personalMovieDB.writeYourGenres();
